@@ -1,0 +1,18 @@
+
+<div class="header">
+    <h1>Game of life</h1>
+    
+    <button class="simulate-btn" (click)="runSimulation()">simulate</button>
+    <button class="stop-btn" (click)="stopSimulation()">stop</button>
+    <button class="reset-btn" (click)="reset()">reset</button>
+    <label for="random"> Randomize?
+        <input [checked]="isRandomized" (click)="randomize()" type="checkbox" id="random">
+    </label>
+</div>
+
+
+<div class="grid-container">
+    <div *ngFor="let row of grid; index as i">
+        <div (click)="handleCellClick(i, j)" class="cell" *ngFor="let cell of row; index as j" [ngClass]="{live: grid[i][j]}"></div>
+    </div>
+</div>

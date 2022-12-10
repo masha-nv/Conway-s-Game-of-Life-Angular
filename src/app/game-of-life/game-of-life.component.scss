@@ -1,0 +1,102 @@
+$numCols: 50;
+$heightWidth: 20px;
+$liveCell: rgb(37, 141, 87);
+$deadCell: rgba(94, 154, 160, 0.5);
+$borderRadius: 3px;
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    border: none;
+    text-transform: uppercase;
+    color: white;
+    padding: 10px 40px;
+    border-radius: $borderRadius;
+    letter-spacing: 1px;
+    transition: .3s;
+    &:active {
+        scale: 1.1;
+    }
+    &:hover {
+        scale: 1.09
+    }
+}
+
+.simulate-btn {
+   @extend .btn;
+    background-color: $liveCell;
+    &:active {
+        animation-name: animateButtonActive;
+        animation-duration: .3s;
+    }
+    &:hover {
+        animation-name: animateButtonHover;
+        animation-duration: 1.3s;
+    }
+}
+.stop-btn {
+    @extend .btn;
+    color: $deadCell;
+    
+}
+.reset-btn {
+    @extend .btn;
+    color: $deadCell;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat($numCols, $heightWidth);
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.cell {
+    border: 1px solid white;
+    border-radius: $borderRadius;
+    height: $heightWidth;
+    background-color: $deadCell;
+    cursor: pointer;
+}
+
+.live {
+    background-color: $liveCell;
+    // animation-name: animateToLife;
+    // animation-duration: .5s;
+}
+
+@keyframes animateToLife {
+    0% {
+        background-color: $deadCell;
+        scale: 0.8;
+    }
+    50% {
+        background-color: rgba(47, 87, 91, 0.3);
+        scale: 0.6;
+    }
+
+    70% {
+        background-color: $liveCell;
+        opacity: 0.8;
+        scale: 0.9;
+    }
+    100% {
+        background-color: $liveCell;
+        scale: 1;
+    }
+}
+
+@keyframes animateButtonActive {
+    0% {
+        scale: .98
+    }
+}
+@keyframes animateButtonHover {
+    30% {
+        scale: 1.07
+    }
+}
